@@ -3,7 +3,7 @@ agent {label 'slavejava'}
 stages{
 stage('checkout'){
 steps{
-sh 'git pull https://github.com/charan021/hello-world-war.git'
+sh 'git pull https://github.com/Urssharath/hello-world-war.git'
 }
 }
 stage('build'){
@@ -16,7 +16,7 @@ stage('deploy'){
 steps{
 sh 'whoami'
 sh 'sudo chmod -R 0777 /opt'
-sh 'cp -R /home/jenkins/workspace/Job_pipe/target/hello-world-war-1.0.0 /opt/apache-tomcat-9.0.56/webapps'
+sh 'cp -R /home/jenkins/workspace/ppjava/target/hello-world-war-1.0.0 /opt/apache-tomcat-9.0.56/webapps'
 }
 }
 }
