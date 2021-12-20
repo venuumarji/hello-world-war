@@ -14,7 +14,7 @@ pipeline{
 
 	   	   stage('copy'){
         steps{
-	sh'cp -R /var/lib/jenkins/workspace/package/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.56/webapps/'
+	sh'cp -R /var/lib/jenkins/workspace/package/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.56/webapps'
     }
    }
   }
