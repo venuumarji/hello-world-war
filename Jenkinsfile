@@ -1,5 +1,5 @@
 pipeline{
-   agent any
+	agent { label 'group2' }
    stages{
      stage('checkout'){
        steps{
@@ -14,6 +14,7 @@ pipeline{
 
 	   	   stage('copy'){
         steps{
+		sh'sudo chmod -R 0777 /opt'
 	sh'cp -R /home/ubuntu/hello-world-war/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.56/webapps'
     }
    }
