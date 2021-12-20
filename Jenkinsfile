@@ -1,5 +1,5 @@
 pipeline{
-agent{lable'slave_java'}
+agent any
 stages{
 stage('checkout'){
 steps{
