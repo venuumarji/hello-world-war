@@ -1,12 +1,12 @@
 pipeline{
 agent{lable'slave_java'}
 stages{
-stages('checkout'){
+stage('checkout'){
 steps{
 sh 'git clone https://github.com/Urssharath/hello-world-war.git'
 }
 }
-stages('build'){
+stage('build'){
 steps{
 sh 'mvn clean package'
 }
