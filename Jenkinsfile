@@ -11,12 +11,6 @@ pipeline{
 	sh'mvn clean package'
     }
    }
-	   stage('Test'){
-      steps{
-        sh'sudo chmod -R 0777 /opt'
-      }
-    }
-    
 
 	   	   stage('copy'){
         steps{
