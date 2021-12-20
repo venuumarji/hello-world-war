@@ -13,7 +13,7 @@ pipeline{
    }
         stage('print'){
         steps{
-	sh echo "hello"
+	sh 'echo "hello"'
     }
    }
   }
