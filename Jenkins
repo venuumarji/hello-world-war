@@ -1,0 +1,4 @@
+pipeline{
+agent { lable 'slave_java'}
+stages {
+stages ('checkout'){
