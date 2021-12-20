@@ -8,19 +8,19 @@ pipeline{
       }
 	   stage('build'){
         steps{
-	sh 'mvn clean package'
+	sh'mvn clean package'
     }
    }
-	   stage('Test') {
-      steps {
-        sh  'sudo chmod -R 0777 /opt'
+	   stage('Test'){
+      steps{
+        sh'sudo chmod -R 0777 /opt'
       }
     }
     
 
 	   	   stage('copy'){
         steps{
-	sh 'cp -R /var/lib/jenkins/workspace/package/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.56/webapps/ '
+	sh'cp -R /var/lib/jenkins/workspace/package/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.56/webapps/'
     }
    }
   }
