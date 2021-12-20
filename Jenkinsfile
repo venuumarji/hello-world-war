@@ -11,9 +11,9 @@ pipeline{
 	sh 'mvn clean package'
     }
    }
-	   	   stage('print'){
+        stage('print'){
         steps{
-	sh 'echo "hello"'
+	sh echo "hello"
     }
    }
   }
