@@ -5,7 +5,7 @@
 <body>
 	<body style="background-color:powderblue;">
 	<h1>Hello World!</h1>
-	<h1>vvenu!</h1>
+	<h2>venu</h2>
 	<p>
 		It is now
 		<%= new java.util.Date() %></p>
