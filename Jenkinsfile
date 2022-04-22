@@ -1,20 +1,20 @@
-pipeline{
+pipeline {
 	agent { label 'tomcat' }
-   stages{
-     stage('checkout'){
-       steps{
-      	sh'git pull https://github.com/venuumarji/hello-world-war.git'
+   stages {
+     stage('checkout') {
+       steps { 
+      	       sh'git pull https://github.com/venuumarji/hello-world-war.git'
 	}
       }
-	   stage('build'){
-        steps{
-	sh'mvn clean package'
+	   stage('build') {
+        steps {
+	        sh'mvn clean package'
     }
    }
 
-	   	   stage('copy'){
-        steps{
-	sh'sudo cp -R target/hello-world-war-1.0.0.war /home/slave1/apache-tomcat-9.0.62/webapps'
+	   	   stage('copy') {
+        steps {
+	        sh'sudo cp -R home/ubuntu/hello-world-war-1.0.0/target/hello-world-war-1.0.0.war  /home/slave1/apache-tomcat-9.0.62/webapps'
     }
    }
   }
