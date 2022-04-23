@@ -13,7 +13,7 @@ pipeline {
     }
     stage('copy') {
      steps {
-	     sh 'sudo cp -r /home/ubuntu/javaproject/hello-world-war/target/hello-world-war-1.0.0.war   /home/slave1/apache-tomcat-9.0.62/webapps'
+	     sh 'sudo cp -r /home/ubuntu/hello-world-war/target/hello-world-war-1.0.0.war   /home/slave1/apache-tomcat-9.0.62/webapps'
      }
     }
   }
