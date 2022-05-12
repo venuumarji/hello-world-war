@@ -5,6 +5,8 @@ pipeline {
         steps {
                 sh 'sudo rm -rf hello-world-war'
                 sh 'git clone https://github.com/venuumarji/hello-world-war.git'
+                sh 'pwd'
+                sh 'ls'
         }
       }
       stage ('docker') {
