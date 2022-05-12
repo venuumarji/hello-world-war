@@ -17,5 +17,6 @@ pipeline {
                 sh 'docker tag multistage:1.0 377663637476.dkr.ecr.us-east-1.amazonaws.com/multistage:latest'
                 sh 'docker push 377663637476.dkr.ecr.us-east-1.amazonaws.com/multistage:latest'
           }
-      }    
-           
+      }
+    }
+}         
