@@ -8,7 +8,7 @@ pipeline {
       }
       stage ('docker') {
         steps {
-                sh 'docker build -t multistge:1.0 -f Dockerfile'
+                sh 'docker build -t multistge:1.0 .'
          }
       }
       stage ('push') {
