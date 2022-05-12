@@ -11,8 +11,7 @@ pipeline {
       }
       stage ('docker') {
         steps {
-                sh 'cd hello-world-war'
-                sh 'docker build -t multistage:1.0 .'
+                sh 'docker build -t multistage:1.0 -f Dockerfile'
          }
       }
       stage ('push') {
