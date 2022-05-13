@@ -22,5 +22,13 @@ pipeline {
                 sh 'docker push 377663637476.dkr.ecr.us-east-1.amazonaws.com/multistage:latest'
           }
       }
+      
+      stage ('deploy') {
+        agent {label 'tomcat'}
+        steps {
+                sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 377663637476.dkr.ecr.us-east-1.amazonaws.com'
+                sh 'docker pull 377663637476.dkr.ecr.us-east-1.amazonaws.com/multistage:latest'
+        }
+      }
     }
 }         
