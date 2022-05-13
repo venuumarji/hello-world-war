@@ -17,7 +17,7 @@ pipeline {
       }
       stage ('push') {
         steps {
-                sh 'docker rmi -f 377663637476.dkr.ecr.us-east-1.amazonaws.com/multistage:latest'
+               
                 sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 377663637476.dkr.ecr.us-east-1.amazonaws.com'
                 sh 'docker tag multistage:1.0 377663637476.dkr.ecr.us-east-1.amazonaws.com/multistage:latest'
                 sh 'docker push 377663637476.dkr.ecr.us-east-1.amazonaws.com/multistage:latest'
