@@ -28,8 +28,8 @@ pipeline {
         steps {
                 sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 377663637476.dkr.ecr.us-east-1.amazonaws.com'
                 sh 'docker pull 377663637476.dkr.ecr.us-east-1.amazonaws.com/multistage:latest'
-                sh 'docker rm -f trail1'
-                sh 'docker run -d -p 8092:8080 --name trail1 377663637476.dkr.ecr.us-east-1.amazonaws.com/multistage:latest'
+                sh 'docker rm -f test1'
+                sh 'docker run -d -p 8092:8080 --name test1 377663637476.dkr.ecr.us-east-1.amazonaws.com/multistage:latest'
         }
       }
     }
