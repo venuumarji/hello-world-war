@@ -4,7 +4,7 @@ pipeline {
     stage ('checkout') {
       steps {
               sh 'whoami'
-              sh 'sudo rm -rf hello-world-war'
+              sh 'rm -rf hello-world-war'
               sh 'git clone https://github.com/venuumarji/hello-world-war.git'
               sh 'pwd'
               sh 'ls'
@@ -12,7 +12,6 @@ pipeline {
     }
     stage ('build') {
       steps {
-              sh 'sudo chmod 666 /var/run/docker.sock'
               sh 'docker build -t 377663637476.dkr.ecr.us-east-1.amazonaws.com/mytomcat:${BUILD_NUMBER} .'
       }
     }
