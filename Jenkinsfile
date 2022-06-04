@@ -9,28 +9,29 @@ pipeline {
                 sh 'ls'
         }
       }
-      stage ('docker') {
+      stage ('build') {
         steps {
                 sh 'sudo chmod 666 /var/run/docker.sock'
-                sh 'docker build -t multistage:1.0 .'
+                sh 'docker build -t 377663637476.dkr.ecr.us-east-1.amazonaws.com/mytomcat:${BUILD_NUMBER} .'
          }
       }
-      stage ('push') {
+      stage ('publish') {
         steps {               
                 sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 377663637476.dkr.ecr.us-east-1.amazonaws.com'
-                sh 'docker tag multistage:1.0 377663637476.dkr.ecr.us-east-1.amazonaws.com/multistage:latest'
-                sh 'docker push 377663637476.dkr.ecr.us-east-1.amazonaws.com/multistage:latest'
+                sh 'docker push 377663637476.dkr.ecr.us-east-1.amazonaws.com/mytomcat:${BUILD_NUMBER}'
+                sh 'pwd'
+                sh 'ls'
+                sh "sudo helm package --version ${BUILD_NUMBER} helm/mytomcat/ "
+                sh "curl -uvenu.umarji@gmail.com:Jfrog@123 -T mytomcat-${BUILD_NUMBER}.tgz \"https://venu.jfrog.io/artifactory/mytomcat-helm/mytomcat-${BUILD_NUMBER}.tgz\""
           }
       }
       
       stage ('deploy') {
-        agent {label 'tomcat'}
+        agent {label 'eksslave'}
         steps {
-                sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 377663637476.dkr.ecr.us-east-1.amazonaws.com'
-                sh 'docker pull 377663637476.dkr.ecr.us-east-1.amazonaws.com/multistage:latest'
-                sh 'docker rm -f test1'
-                sh 'docker run -d -p 8092:8080 --name test1 377663637476.dkr.ecr.us-east-1.amazonaws.com/multistage:latest'
-        }
+                sh "helm repo add mytomcat-helm https://venu.jfrog.io/artifactory/api/helm/mytomcat-helm --username venu.umarji@gmail.com --password Jfrog@123"
+                sh "helm repo update"
+                sh "helm upgrade --install tomcat mytomcat-helm/mytomcat --set image_tag=${BUILD_NUMBER} --version ${BUILD_NUMBER}"
       }
     }
 }         
