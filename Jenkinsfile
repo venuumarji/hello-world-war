@@ -21,7 +21,7 @@ pipeline {
               sh 'docker push 377663637476.dkr.ecr.us-east-1.amazonaws.com/mytomcat:${BUILD_NUMBER}'
               sh 'pwd'
               sh 'ls'
-              sh "sudo helm package --version ${BUILD_NUMBER} helm/mytomcat/ "
+              sh "helm package --version ${BUILD_NUMBER} helm/mytomcat/ "
               sh "curl -uvenu.umarji@gmail.com:Jfrog@123 -T mytomcat-${BUILD_NUMBER}.tgz \"https://venu.jfrog.io/artifactory/mytomcat-helm/mytomcat-${BUILD_NUMBER}.tgz\""
       }
     }
@@ -29,9 +29,9 @@ pipeline {
     stage ('deploy') {
       agent {label 'eksslave'}
       steps {
-              sh "helm repo add mytomcat-helm https://venu.jfrog.io/artifactory/api/helm/mytomcat-helm --username venu.umarji@gmail.com --password Jfrog@123"
-              sh "helm repo update"
-              sh "helm upgrade --install tomcat mytomcat-helm/mytomcat --set image_tag=${BUILD_NUMBER} --version ${BUILD_NUMBER}"
+              sh "sudo helm repo add mytomcat-helm https://venu.jfrog.io/artifactory/api/helm/mytomcat-helm --username venu.umarji@gmail.com --password Jfrog@123"
+              sh "sudo helm repo update"
+              sh "sudo helm upgrade --install tomcat mytomcat-helm/mytomcat --set image_tag=${BUILD_NUMBER} --version ${BUILD_NUMBER}"
       }
     }
   }         
