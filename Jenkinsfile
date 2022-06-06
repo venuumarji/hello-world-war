@@ -12,6 +12,7 @@ pipeline {
     }
     stage ('build') {
       steps {
+              sh 'cd hello-world-war'
               sh 'docker build -t 377663637476.dkr.ecr.us-east-1.amazonaws.com/javaproj:${BUILD_NUMBER} .'
       }
     }
