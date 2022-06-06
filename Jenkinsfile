@@ -1,5 +1,5 @@
 pipeline {
-  agent {label 'newslave'}
+  agent {label 'master'}
   stages {
     stage ('checkout') {
       steps {
@@ -27,7 +27,7 @@ pipeline {
     }
       
     stage ('deploy') {
-      agent {label 'eksslave'}
+      agent {label 'tomcat'}
       steps {
               sh "helm repo add mytomcat-helm https://venu.jfrog.io/artifactory/api/helm/mytomcat-helm --username venu.umarji@gmail.com --password Jfrog@123"
               sh "helm repo update"
